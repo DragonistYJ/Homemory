@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".Activity.Mine.FamilyInformation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#48baee">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="家庭信息"
+            android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/bt_return"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:text="返回"
+            android:background="@drawable/frame_gray"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/familyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="辛普森一家 （4）"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="家庭成员"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e2e3e3">
+        <ListView
+            android:id="@+id/lv_familyMember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </ScrollView>
+</LinearLayout>

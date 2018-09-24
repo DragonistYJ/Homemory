@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="#ffffff">
+
+    <com.example.dragonist.homemory.View.CircleView
+        android:id="@+id/portrait"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/bg2"/>
+
+    <TextView
+        android:id="@+id/appellation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/portrait"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:text="爸爸"
+        android:textSize="24sp"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/family_expend"/>
+</RelativeLayout>

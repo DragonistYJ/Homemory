@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Fragment.Search">
+
+    <RelativeLayout
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/frame_gray">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="60dp"
+            android:hint="高级检索"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:background="#ffffff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="取消"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/first_row"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/search">
+
+        <ImageView
+            android:id="@+id/time"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/search_time"/>
+        <ImageView
+            android:id="@+id/uploader"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/search_uploader"/>
+        <ImageView
+            android:id="@+id/classify"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/search_classify"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/second_row"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/first_row"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:id="@+id/formation"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/search_formation"/>
+        <ImageView
+            android:id="@+id/keyword"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/search_keyword"/>
+        <ImageView
+            android:id="@+id/face"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/search_face"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/third_row"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/second_row"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+
+        <ImageView
+            android:id="@+id/nlp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/search_nlp" />
+        <ImageView
+            android:id="@+id/authority"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/search_authority"/>
+    </RelativeLayout>
+
+</RelativeLayout>
