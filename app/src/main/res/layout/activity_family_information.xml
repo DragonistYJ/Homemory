@@ -49,14 +49,28 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e2e3e3"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#e2e3e3">
+        android:layout_height="400dp"
+        android:fillViewport="true">
         <ListView
             android:id="@+id/lv_familyMember"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
         </ListView>
     </ScrollView>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="管理家庭档案"
+        android:textSize="24sp"
+        android:background="@drawable/frame_gray"/>
 </LinearLayout>

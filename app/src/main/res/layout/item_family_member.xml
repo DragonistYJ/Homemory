@@ -1,33 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="#ffffff">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <com.example.dragonist.homemory.View.CircleView
-        android:id="@+id/portrait"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="40dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/bg2"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#ffffff">
+        <com.example.dragonist.homemory.View.CircleView
+            android:id="@+id/portrait"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/bg2"/>
 
-    <TextView
-        android:id="@+id/appellation"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/appellation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/portrait"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="爸爸"
+            android:textSize="24sp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/family_expend"/>
+
+        <TextView
+            android:id="@+id/nickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_detail"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/portrait"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:text="爸爸"
-        android:textSize="24sp"/>
+        android:background="#e2e3e3">
+        <TextView
+            android:id="@+id/title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:text="昵称："
+            android:textSize="24sp"/>
+        <TextView
+            android:id="@+id/tv_nickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/title_1"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp"
+            android:text="1213"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nickName"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:text="生日："
+            android:textSize="24sp"/>
+        <TextView
+            android:id="@+id/tv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/tv_nickName"
+            android:layout_toRightOf="@+id/title_1"
+            android:text="123"
+            android:textSize="24sp"/>
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="20dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/family_expend"/>
-</RelativeLayout>
+        <Button
+            android:id="@+id/bt_delete"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tv_birthday"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="删除"
+            android:textSize="20sp"
+            android:textColor="#48baee"
+            android:focusable="false"
+            android:background="@drawable/frame_blue"/>
+    </RelativeLayout>
+</LinearLayout>

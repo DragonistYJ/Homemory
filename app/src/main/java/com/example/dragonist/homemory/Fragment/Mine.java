@@ -25,18 +25,5 @@ public class Mine extends Fragment {
         view = inflater.inflate(R.layout.fragment_mine, container, false);
         return view;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        bt_settting = getActivity().findViewById(R.id.bt_setting);
-//        bt_settting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), Setting.class);
-//                getActivity().startActivity(intent);
-//            }
-//        });
-    }
 }
 

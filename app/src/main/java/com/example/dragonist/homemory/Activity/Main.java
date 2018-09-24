@@ -28,6 +28,7 @@ public class Main extends AppCompatActivity {
     private ImageView iv_time_machine;
     private ImageView iv_mine;
     private ImageView iv_upload;
+    private ImageView iv_administrator;
     private Fragment fm_family_stroll;
     private Fragment fm_search;
     private Fragment fm_calendar;
@@ -36,12 +37,13 @@ public class Main extends AppCompatActivity {
     private Button bt_setting;
     private Button bt_familyInformation;
     private int selet_num;
-    private AlertDialog dialog = null;
+    private AlertDialog dialog_Upload = null;
+    private AlertDialog dialog_Administrator = null;
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (dialog!= null) dialog.dismiss();
+        if (dialog_Upload!= null) dialog_Upload.dismiss();
     }
 
     @Override
@@ -98,12 +100,12 @@ public class Main extends AppCompatActivity {
         iv_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                showUploadDialog();
             }
         });
     }
 
-    private void showDialog() {
+    private void showUploadDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View layout = getLayoutInflater().inflate(R.layout.dialog_uploadmethod, null);
         final Intent intent = new Intent(Main.this, Upload.class);
@@ -140,7 +142,11 @@ public class Main extends AppCompatActivity {
         });
 
         builder.setView(layout);
-        dialog = builder.show();
+        dialog_Upload = builder.show();
+    }
+
+    private void showAdministratorDialog() {
+
     }
 
     private void set_selected(int position){
@@ -216,7 +222,6 @@ public class Main extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         //跳转到设置界面
         bt_setting = findViewById(R.id.bt_setting);
         bt_setting.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +239,14 @@ public class Main extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Main.this, FamilyInformation.class);
                 startActivity(intent);
+            }
+        });
+
+        iv_administrator = findViewById(R.id.administrator);
+        iv_administrator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAdministratorDialog();
             }
         });
     }
