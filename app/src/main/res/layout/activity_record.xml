@@ -18,6 +18,7 @@
             android:layout_marginLeft="20dp"
             android:src="@drawable/upload_cancel"/>
         <ImageView
+            android:id="@+id/send"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginRight="20dp"
@@ -43,9 +44,10 @@
         android:id="@+id/et_category"
         android:layout_width="250dp"
         android:layout_height="35dp"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:layout_below="@+id/thumbnail"
-        android:layout_alignRight="@+id/thumbnail"/>
+        android:layout_alignRight="@+id/thumbnail"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_category"
         android:layout_width="wrap_content"
@@ -73,7 +75,8 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/et_category"
         android:layout_alignRight="@+id/thumbnail"
-        android:textSize="15sp" />
+        android:textSize="12sp"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
@@ -93,7 +96,8 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/et_label"
         android:layout_alignRight="@+id/thumbnail"
-        android:textSize="15sp"/>
+        android:textSize="12sp"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_who"
         android:layout_width="wrap_content"
@@ -113,7 +117,8 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/et_who"
         android:layout_alignRight="@+id/thumbnail"
-        android:textSize="15sp"/>
+        android:textSize="12sp"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
@@ -133,7 +138,8 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/et_location"
         android:layout_alignRight="@+id/thumbnail"
-        android:textSize="15sp"/>
+        android:textSize="12sp"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_authority"
         android:layout_width="wrap_content"
@@ -161,7 +167,8 @@
         android:layout_marginTop="5dp"
         android:layout_alignRight="@+id/thumbnail"
         android:layout_below="@+id/et_authority"
-        android:textSize="15sp"/>
+        android:textSize="12sp"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_keyword"
         android:layout_width="wrap_content"
@@ -180,7 +187,8 @@
         android:layout_height="35dp"
         android:layout_below="@+id/et_keyword"
         android:layout_alignRight="@+id/thumbnail"
-        android:textSize="15sp"/>
+        android:textSize="12sp"
+        android:lines="1"/>
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"

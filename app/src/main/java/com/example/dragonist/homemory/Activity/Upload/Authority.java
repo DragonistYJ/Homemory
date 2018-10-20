@@ -1,5 +1,6 @@
 package com.example.dragonist.homemory.Activity.Upload;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ public class Authority extends AppCompatActivity {
     private RelativeLayout rl_personal;
     private ImageView iv_publish;
     private ImageView iv_personal;
+    private ImageView iv_sure;
+    private ImageView iv_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +45,16 @@ public class Authority extends AppCompatActivity {
                 iv_publish.setImageResource(R.drawable.upload_unchecked);
             }
         });
+
+        iv_cancel = findViewById(R.id.cancel);
+        iv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(0x405);
+                finish();
+            }
+        });
+
+        iv_sure = findViewById(R.id.sure);
     }
 }

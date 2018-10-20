@@ -14,13 +14,15 @@
         android:src="@drawable/bg1"
         android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:id="@+id/bt_setting"
+    <TextView
+        android:id="@+id/tvSetting"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
+        android:padding="0dp"
         android:layout_alignParentRight="true"
+        android:gravity="center"
         android:text="设置"
         android:background="@drawable/frame_gray"/>
 
@@ -99,15 +101,17 @@
         android:text="家乡：浙江绍兴"
         android:textSize="25sp"/>
 
-    <Button
-        android:id="@+id/bt_FamilyInformation"
+    <TextView
+        android:id="@+id/tvFamilyInformation"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_below="@+id/hometown"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
+        android:padding="0dp"
         android:text="家庭信息"
+        android:gravity="center"
         android:textSize="25sp"
         android:background="@drawable/frame_gray"/>
 
@@ -115,7 +119,7 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bt_FamilyInformation"
+        android:layout_below="@+id/tvFamilyInformation"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"

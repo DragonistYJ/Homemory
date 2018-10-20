@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Regist1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+        <Button
+            android:id="@+id/num86"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/line1"
+            android:layout_alignBottom="@+id/line1"
+            android:layout_marginBottom="5dp"
+            android:text="+86"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:background="@drawable/btn_rectangle"/>
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/num86"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:textSize="22sp"
+            android:layout_alignBottom="@+id/line1"
+            android:hint="输入手机号"
+            android:textColorHint="#48b9ee"/>
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#48b2ee"
+            android:layout_marginTop="100dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
+        <Button
+            android:id="@+id/btn_code"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/line2"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/frame_blue"
+            android:layout_alignRight="@+id/line2"
+            android:text="获取验证码"
+            android:textColor="#48b2ee"/>
+        <EditText
+            android:id="@+id/et_SMSCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_toLeftOf="@+id/btn_code"
+            android:layout_alignBottom="@+id/line2"
+            android:textSize="22sp"
+            android:layout_marginBottom="10dp"/>
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="50dp"
+            android:background="#48b2ee" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_rectangle"
+        android:text="注  册"
+        android:textColor="#ffffff"
+        android:textSize="22sp"/>
+</LinearLayout>

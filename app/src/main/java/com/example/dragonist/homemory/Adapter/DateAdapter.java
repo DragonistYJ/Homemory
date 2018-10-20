@@ -17,6 +17,44 @@ public class DateAdapter extends BaseAdapter {
     private int year;
     private int month;
 
+    public int[] getDays() {
+        return days;
+    }
+
+    public void setDays(int[][] days) {
+        int dayNum = 0;
+        for (int i = 0; i < days.length; i++) {
+            for (int j = 0; j < days[i].length; j++) {
+                this.days[dayNum] = days[i][j];
+                dayNum++;
+            }
+        }
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
     public DateAdapter(Context context, int[][] days, int year, int month) {
         this.context = context;
         this.year = year;

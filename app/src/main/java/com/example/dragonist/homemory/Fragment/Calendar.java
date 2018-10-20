@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,13 @@ public class Calendar extends Fragment {
         calendar_title = view.findViewById(R.id.calendar_title);
         gv_date = view.findViewById(R.id.calendar);
 
+        gv_date.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
         year = Date.getYear();
         month = Date.getMonth();
         days = Date.getDayOfMonthFormat(2018, 9);
@@ -54,7 +62,10 @@ public class Calendar extends Fragment {
             @Override
             public void onClick(View v) {
                 days = preYear();
-                dateAdapter = new DateAdapter(getContext(),days,year,month);
+                dateAdapter.setContext(getContext());
+                dateAdapter.setDays(days);
+                dateAdapter.setMonth(month);
+                dateAdapter.setYear(year);
                 gv_date.setAdapter(dateAdapter);
                 dateAdapter.notifyDataSetChanged();
                 setTitle();
@@ -65,7 +76,10 @@ public class Calendar extends Fragment {
             @Override
             public void onClick(View v) {
                 days = nextYear();
-                dateAdapter = new DateAdapter(getContext(),days,year,month);
+                dateAdapter.setContext(getContext());
+                dateAdapter.setDays(days);
+                dateAdapter.setMonth(month);
+                dateAdapter.setYear(year);
                 gv_date.setAdapter(dateAdapter);
                 dateAdapter.notifyDataSetChanged();
                 setTitle();
@@ -76,7 +90,10 @@ public class Calendar extends Fragment {
             @Override
             public void onClick(View v) {
                 days = prevMonth();
-                dateAdapter = new DateAdapter(getContext(),days,year,month);
+                dateAdapter.setContext(getContext());
+                dateAdapter.setDays(days);
+                dateAdapter.setMonth(month);
+                dateAdapter.setYear(year);
                 gv_date.setAdapter(dateAdapter);
                 dateAdapter.notifyDataSetChanged();
                 setTitle();
@@ -87,7 +104,10 @@ public class Calendar extends Fragment {
             @Override
             public void onClick(View v) {
                 days = nextMonth();
-                dateAdapter = new DateAdapter(getContext(),days,year,month);
+                dateAdapter.setContext(getContext());
+                dateAdapter.setDays(days);
+                dateAdapter.setMonth(month);
+                dateAdapter.setYear(year);
                 gv_date.setAdapter(dateAdapter);
                 dateAdapter.notifyDataSetChanged();
                 setTitle();

@@ -2,10 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dragonist.homemory">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,7 +30,17 @@
         <activity android:name=".Activity.Upload.Category" />
         <activity android:name=".Activity.Upload.Authority" />
         <activity android:name=".Activity.Mine.Setting" />
-        <activity android:name=".Activity.Mine.FamilyInformation"></activity>
+        <activity android:name=".Activity.Mine.FamilyInformation" />
+        <activity android:name=".Activity.Regist1" />
+
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="ee84bd27b6727bce9ed8387b" />
+
+        <activity android:name=".Activity.Register2" />
+        <activity android:name=".Activity.Videaoview" />
+        <activity android:name=".Activity.Search" />
+        <activity android:name=".Activity.DetailArchie"></activity>
     </application>
 
 </manifest>

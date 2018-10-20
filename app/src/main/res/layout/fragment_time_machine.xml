@@ -4,7 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".Fragment.Time_Machine">
+
+    <ScrollView
+        android:id="@+id/sv_memory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="20dp"
+        android:fillViewport="true">
+        <ListView
+            android:id="@+id/lv_memory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:scrollbars="none"
+            android:dividerHeight="5dp"
+            android:divider="#e2e3e3">
+        </ListView>
+    </ScrollView>
 
     <View
         android:layout_width="4dp"
@@ -23,7 +43,8 @@
         <ListView
             android:id="@+id/lv_year"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
         </ListView>
     </ScrollView>
 
@@ -49,7 +70,8 @@
         <ListView
             android:id="@+id/lv_month"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
         </ListView>
     </ScrollView>
 
@@ -65,7 +87,7 @@
         android:background="@drawable/btn_rectangle"/>
     
     <Button
-        android:id="@+id/bt_personalBill"
+        android:id="@+id/btn_personalBill"
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
@@ -77,30 +99,15 @@
         android:background="@drawable/btn_rectangle"/>
     
     <Button
-        android:id="@+id/bt_familyBill"
+        android:id="@+id/btn_familyBill"
         android:layout_width="90dp"
         android:layout_height="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/bt_personalBill"
+        android:layout_toLeftOf="@+id/btn_personalBill"
         android:text="家庭集体账单"
         android:textColor="#ffffff"
         android:textSize="10sp"
         android:background="@drawable/btn_rectangle"/>
-
-    <ScrollView
-        android:id="@+id/sv_memory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="20dp"
-        android:fillViewport="true">
-        <ListView
-            android:id="@+id/lv_memory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
-    </ScrollView>
 
 </RelativeLayout>

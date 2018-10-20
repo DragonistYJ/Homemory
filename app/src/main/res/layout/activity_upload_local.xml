@@ -9,13 +9,43 @@
     tools:context=".Activity.Upload.Upload">
 
     <ImageView
-        android:id="@+id/remind"
+        android:id="@+id/ivRemind"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginRight="20dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:src="@drawable/upload_remind"/>
+
+    <LinearLayout
+        android:id="@+id/llBigEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否设为大事记？"
+            android:textSize="20sp"
+            android:textColor="#48baee"/>
+        <RadioGroup
+            android:id="@+id/rgEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="是"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="否"/>
+        </RadioGroup>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/actionbar"

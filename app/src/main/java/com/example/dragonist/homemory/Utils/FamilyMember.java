@@ -1,20 +1,22 @@
 package com.example.dragonist.homemory.Utils;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class FamilyMember {
-    private int portrait;
+    private Bitmap portrait;
     private String appellation;
     private int intimacy;
     private boolean expend;
     private String nickName;
     private String birthday;
 
-    public FamilyMember(int portrait, String appellation, int intimacy, String nickName, String birthday) {
+    public FamilyMember(Bitmap portrait, String appellation, int intimacy, String nickName, String birthday) {
         this(portrait,appellation,intimacy,false,nickName,birthday);
     }
 
-    public FamilyMember(int portrait, String appellation, int intimacy, boolean expend, String nickName, String birthday) {
+    public FamilyMember(Bitmap portrait, String appellation, int intimacy, boolean expend, String nickName, String birthday) {
         this.portrait = portrait;
         this.appellation = appellation;
         this.intimacy = intimacy;
@@ -63,11 +65,11 @@ public class FamilyMember {
         this.birthday = birthday;
     }
 
-    public int getPortrait() {
+    public Bitmap getPortrait() {
         return portrait;
     }
 
-    public void setPortrait(int portrait) {
+    public void setPortrait(Bitmap portrait) {
         this.portrait = portrait;
     }
 }

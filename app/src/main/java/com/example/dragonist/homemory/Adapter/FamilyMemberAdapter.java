@@ -58,7 +58,7 @@ public class FamilyMemberAdapter extends BaseAdapter {
         }
 
         viewHolder.tv_appellation.setText(familyMembers.get(position).getAppellation());
-        viewHolder.iv_portrait.setImageResource(familyMembers.get(position).getPortrait());
+        viewHolder.iv_portrait.setImageBitmap(familyMembers.get(position).getPortrait());
         viewHolder.tv_birthday.setText(familyMembers.get(position).getBirthday());
         viewHolder.tv_nickName.setText(familyMembers.get(position).getNickName());
         if (!familyMembers.get(position).isExpend()) {

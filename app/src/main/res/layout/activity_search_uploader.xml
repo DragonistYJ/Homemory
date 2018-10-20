@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#48b2ee">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="搜索"
+            android:textSize="24sp"
+            android:textColor="#ffffff"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btnCancel"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/title"
+        android:padding="0dp"
+        android:gravity="center"
+        android:text="取消"
+        android:textSize="20sp"
+        android:background="@drawable/frame_gray"/>
+
+    <TextView
+        android:id="@+id/btnConfirm"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/title"
+        android:padding="0dp"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:text="确认"
+        android:textSize="20sp"
+        android:background="@drawable/frame_gray"/>
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/btnCancel"
+        android:layout_marginBottom="20dp"
+        android:text="HOMEMORY"
+        android:textSize="40sp"
+        android:textColor="#48badd"/>
+
+    <LinearLayout
+        android:id="@+id/llUploader"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/logo"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:padding="0dp"
+        android:orientation="horizontal"
+        android:background="@drawable/frame_blue">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="上传者"
+            android:layout_marginRight="5dp"
+            android:textColor="#48baee"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llUploaders"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="80dp"
+        android:padding="0dp"
+        android:layout_below="@+id/llUploader"
+        android:background="@drawable/frame_blue"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="搜索"
+            android:gravity="center"
+            android:textColorHint="#48baee"
+            android:textColor="#48baee"
+            android:background="@null" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#48baee"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:fillViewport="true">
+            <ListView
+                android:id="@+id/lvUploader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:dividerHeight="4dp"
+                android:divider="@null">
+            </ListView>
+        </ScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>

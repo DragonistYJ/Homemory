@@ -1,6 +1,8 @@
 package com.example.dragonist.homemory.Activity.Mine;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,8 +60,9 @@ public class FamilyInformation extends AppCompatActivity {
     }
 
     private void set_familyData() {
-        FamilyMember father = new FamilyMember(R.drawable.bg1,"爸爸",3,"大江大海","1999年3月28日");
-        FamilyMember mother = new FamilyMember(R.drawable.bg2,"妈妈",3,"江海","1998年3月28日");
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.bg2);
+        FamilyMember father = new FamilyMember(bitmap,"爸爸",3,"大江大海","1999年3月28日");
+        FamilyMember mother = new FamilyMember(bitmap,"妈妈",3,"江海","1998年3月28日");
         familyMembers.add(father);
         familyMembers.add(mother);
     }

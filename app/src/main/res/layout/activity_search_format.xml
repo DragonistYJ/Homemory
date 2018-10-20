@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#48b2ee">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="搜索"
+            android:textSize="24sp"
+            android:textColor="#ffffff"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/btnCancel"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/title"
+        android:padding="0dp"
+        android:gravity="center"
+        android:text="取消"
+        android:textSize="20sp"
+        android:background="@drawable/frame_gray"/>
+
+    <TextView
+        android:id="@+id/btnConfirm"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/title"
+        android:padding="0dp"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:text="确认"
+        android:textSize="20sp"
+        android:background="@drawable/frame_gray"/>
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/btnCancel"
+        android:layout_marginBottom="20dp"
+        android:text="HOMEMORY"
+        android:textSize="40sp"
+        android:textColor="#48badd"/>
+
+    <LinearLayout
+        android:id="@+id/llFormat"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/logo"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:padding="0dp"
+        android:orientation="horizontal"
+        android:background="@drawable/frame_blue">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="格式"
+            android:textColor="#48baee"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlFormat"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:paddingTop="10dp"
+        android:padding="0dp"
+        android:layout_below="@+id/llFormat"
+        android:background="@drawable/frame_blue"
+        android:visibility="invisible">
+
+        <CheckBox
+            android:id="@+id/cbImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="图片"
+            android:textSize="20sp"
+            android:textColor="#48baee"/>
+        <CheckBox
+            android:id="@+id/cbMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="音频"
+            android:textSize="20sp"
+            android:textColor="#48baee"/>
+        <CheckBox
+            android:id="@+id/cbVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="视频"
+            android:textSize="20sp"
+            android:textColor="#48baee"/>
+        <CheckBox
+            android:id="@+id/cbDocument"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="文件"
+            android:textSize="20sp"
+            android:textColor="#48baee"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

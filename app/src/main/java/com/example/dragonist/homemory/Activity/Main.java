@@ -8,8 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.dragonist.homemory.Activity.Mine.FamilyInformation;
 import com.example.dragonist.homemory.Activity.Mine.Setting;
@@ -34,11 +37,24 @@ public class Main extends AppCompatActivity {
     private Fragment fm_calendar;
     private Fragment fm_time_machine;
     private Fragment fm_mine;
-    private Button bt_setting;
-    private Button bt_familyInformation;
     private int selet_num;
     private AlertDialog dialog_Upload = null;
     private AlertDialog dialog_Administrator = null;
+
+    //fragment search
+    private ImageView time;
+    private ImageView authority;
+    private ImageView keyword;
+    private ImageView format;
+    private ImageView theme;
+    private ImageView uploader;
+
+    //fragment mine
+    private TextView tvSetting;
+    private TextView tvFamilyInformation;
+
+    //fragment timeMachine
+    private ListView lvArchive;
 
     @Override
     protected void onPause() {
@@ -223,8 +239,8 @@ public class Main extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //跳转到设置界面
-        bt_setting = findViewById(R.id.bt_setting);
-        bt_setting.setOnClickListener(new View.OnClickListener() {
+        tvSetting = findViewById(R.id.tvSetting);
+        tvSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Main.this,Setting.class);
@@ -233,8 +249,8 @@ public class Main extends AppCompatActivity {
         });
 
         //跳转到家庭信息界面
-        bt_familyInformation = findViewById(R.id.bt_FamilyInformation);
-        bt_familyInformation.setOnClickListener(new View.OnClickListener() {
+        tvFamilyInformation = findViewById(R.id.tvFamilyInformation);
+        tvFamilyInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Main.this, FamilyInformation.class);
@@ -247,6 +263,65 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showAdministratorDialog();
+            }
+        });
+
+        //各种搜索功能
+        final Intent intent = new Intent(Main.this, com.example.dragonist.homemory.Activity.Search.class);
+        time = findViewById(R.id.time);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("layout","time");
+                startActivity(intent);
+            }
+        });
+        keyword = findViewById(R.id.keyword);
+        keyword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("layout","keyword");
+                startActivity(intent);
+            }
+        });
+        format = findViewById(R.id.format);
+        format.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("layout","format");
+                startActivity(intent);
+            }
+        });
+        theme = findViewById(R.id.theme);
+        theme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("layout","theme");
+                startActivity(intent);
+            }
+        });
+        authority = findViewById(R.id.authority);
+        authority.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("layout","authority");
+                startActivity(intent);
+            }
+        });
+        uploader = findViewById(R.id.uploader);
+        uploader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("layout","uploader");
+                startActivity(intent);
+            }
+        });
+
+        lvArchive = findViewById(R.id.lv_memory);
+        lvArchive.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                
             }
         });
     }
