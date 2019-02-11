@@ -11,10 +11,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.Login">
@@ -38,9 +38,25 @@
             android:value="ee84bd27b6727bce9ed8387b" />
 
         <activity android:name=".Activity.Register2" />
-        <activity android:name=".Activity.Videaoview" />
+        <activity android:name=".Activity.Videoview" />
         <activity android:name=".Activity.Search" />
-        <activity android:name=".Activity.DetailArchie"></activity>
+        <activity android:name=".Activity.DetailArchie" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="GoldLee"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".Activity.Family.FamilyGroup" />
+        <activity android:name=".Activity.Mine.Notice" />
+        <activity android:name=".Activity.musicactivity" />
+        <activity android:name=".Activity.ArchieDetailShow" />
+        <activity android:name=".Activity.MyVideoView"></activity>
     </application>
 
 </manifest>

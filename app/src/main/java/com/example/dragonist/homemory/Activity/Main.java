@@ -2,19 +2,26 @@ package com.example.dragonist.homemory.Activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.dragonist.homemory.Activity.Family.FamilyGroup;
 import com.example.dragonist.homemory.Activity.Mine.FamilyInformation;
+import com.example.dragonist.homemory.Activity.Mine.Notice;
 import com.example.dragonist.homemory.Activity.Mine.Setting;
 import com.example.dragonist.homemory.Fragment.Calendar;
 import com.example.dragonist.homemory.Fragment.Family_Stroll;
@@ -31,7 +38,6 @@ public class Main extends AppCompatActivity {
     private ImageView iv_time_machine;
     private ImageView iv_mine;
     private ImageView iv_upload;
-    private ImageView iv_administrator;
     private Fragment fm_family_stroll;
     private Fragment fm_search;
     private Fragment fm_calendar;
@@ -39,7 +45,6 @@ public class Main extends AppCompatActivity {
     private Fragment fm_mine;
     private int selet_num;
     private AlertDialog dialog_Upload = null;
-    private AlertDialog dialog_Administrator = null;
 
     //fragment search
     private ImageView time;
@@ -48,18 +53,26 @@ public class Main extends AppCompatActivity {
     private ImageView format;
     private ImageView theme;
     private ImageView uploader;
-
+    private ImageView main;
     //fragment mine
     private TextView tvSetting;
     private TextView tvFamilyInformation;
+    private TextView tvCreateFamily;
+    private TextView tvJoinFamily;
+    private ImageView ivAdministrator;
+    private TextView tvSecedeFamily;
+    private TextView tvNotice;
 
     //fragment timeMachine
     private ListView lvArchive;
 
+    //fragment family stroll
+
+
     @Override
     protected void onPause() {
         super.onPause();
-        if (dialog_Upload!= null) dialog_Upload.dismiss();
+        if (dialog_Upload != null) dialog_Upload.dismiss();
     }
 
     @Override
@@ -67,7 +80,6 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
         iv_family_stroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +133,9 @@ public class Main extends AppCompatActivity {
         });
     }
 
+    /*
+    用于显示选择上传界面
+     */
     private void showUploadDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View layout = getLayoutInflater().inflate(R.layout.dialog_uploadmethod, null);
@@ -131,7 +146,7 @@ public class Main extends AppCompatActivity {
         iv_local.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("method","local");
+                bundle.putString("method", "local");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -141,7 +156,7 @@ public class Main extends AppCompatActivity {
         iv_realtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("method","realtime");
+                bundle.putString("method", "realtime");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -151,7 +166,7 @@ public class Main extends AppCompatActivity {
         iv_medio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle.putString("method","realtime");
+                bundle.putString("method", "realtime");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -161,12 +176,11 @@ public class Main extends AppCompatActivity {
         dialog_Upload = builder.show();
     }
 
-    private void showAdministratorDialog() {
-
-    }
-
-    private void set_selected(int position){
-        switch (selet_num){
+    /*
+    各个fagment之间切换
+     */
+    private void set_selected(int position) {
+        switch (selet_num) {
             case 1:
                 iv_family_stroll.setImageResource(R.drawable.main_home);
                 break;
@@ -183,7 +197,7 @@ public class Main extends AppCompatActivity {
                 iv_mine.setImageResource(R.drawable.main_mine);
                 break;
         }
-        switch (position){
+        switch (position) {
             case 1:
                 iv_family_stroll.setImageResource(R.drawable.main_home_selected);
                 selet_num = 1;
@@ -207,7 +221,7 @@ public class Main extends AppCompatActivity {
         }
     }
 
-    private void init(){
+    private void init() {
         iv_family_stroll = findViewById(R.id.family_stroll);
         iv_search = findViewById(R.id.search);
         iv_calendar = findViewById(R.id.calendar);
@@ -238,16 +252,18 @@ public class Main extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        /*
+        fragment mine
+         */
         //跳转到设置界面
         tvSetting = findViewById(R.id.tvSetting);
         tvSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main.this,Setting.class);
+                Intent intent = new Intent(Main.this, Setting.class);
                 startActivity(intent);
             }
         });
-
         //跳转到家庭信息界面
         tvFamilyInformation = findViewById(R.id.tvFamilyInformation);
         tvFamilyInformation.setOnClickListener(new View.OnClickListener() {
@@ -257,22 +273,46 @@ public class Main extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        iv_administrator = findViewById(R.id.administrator);
-        iv_administrator.setOnClickListener(new View.OnClickListener() {
+        //创建家庭
+        tvCreateFamily = findViewById(R.id.tvCreateFamily);
+        tvCreateFamily.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAdministratorDialog();
+                Intent intent = new Intent(Main.this, FamilyGroup.class);
+                intent.putExtra("aim", "create");
+                startActivity(intent);
+            }
+        });
+        //加入家庭
+        tvJoinFamily = findViewById(R.id.tvJoinFamily);
+        tvJoinFamily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Main.this, FamilyGroup.class);
+                intent.putExtra("aim", "join");
+                startActivityForResult(intent, 0x0001);
+            }
+        });
+        //通知界面
+        tvNotice = findViewById(R.id.tvNotice);
+        tvNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Main.this, Notice.class);
+                startActivity(intent);
             }
         });
 
-        //各种搜索功能
+
+        /*
+        fragment search
+         */
         final Intent intent = new Intent(Main.this, com.example.dragonist.homemory.Activity.Search.class);
         time = findViewById(R.id.time);
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("layout","time");
+                intent.putExtra("layout", "time");
                 startActivity(intent);
             }
         });
@@ -280,7 +320,7 @@ public class Main extends AppCompatActivity {
         keyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("layout","keyword");
+                intent.putExtra("layout", "keyword");
                 startActivity(intent);
             }
         });
@@ -288,7 +328,7 @@ public class Main extends AppCompatActivity {
         format.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("layout","format");
+                intent.putExtra("layout", "format");
                 startActivity(intent);
             }
         });
@@ -296,7 +336,7 @@ public class Main extends AppCompatActivity {
         theme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("layout","theme");
+                intent.putExtra("layout", "theme");
                 startActivity(intent);
             }
         });
@@ -304,7 +344,7 @@ public class Main extends AppCompatActivity {
         authority.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("layout","authority");
+                intent.putExtra("layout", "authority");
                 startActivity(intent);
             }
         });
@@ -312,17 +352,27 @@ public class Main extends AppCompatActivity {
         uploader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("layout","uploader");
+                intent.putExtra("layout", "uploader");
                 startActivity(intent);
             }
         });
+    }
 
-        lvArchive = findViewById(R.id.lv_memory);
-        lvArchive.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                
-            }
-        });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        /*
+        创建家庭的返回处理
+        设置管理员图标可见
+        在内存中添加为是管理员
+         */
+        if (requestCode == 0x0001 && resultCode == 0x0010) {
+            ivAdministrator = findViewById(R.id.ivAdministrator);
+            ivAdministrator.setVisibility(View.VISIBLE);
+            SharedPreferences.Editor editor = getSharedPreferences("HOMEMORY", MODE_PRIVATE).edit();
+            editor.putBoolean("Administrator", true);
+            editor.commit();
+            tvSecedeFamily = findViewById(R.id.tvSecedeFamily);
+            tvSecedeFamily.setVisibility(View.VISIBLE);
+        }
     }
 }

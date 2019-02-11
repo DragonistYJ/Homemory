@@ -28,10 +28,48 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/bg2"/>
             <ImageView
+                android:id="@+id/bg3"
                 android:layout_width="500dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg3"/>
         </LinearLayout>
     </HorizontalScrollView>
 
+    <TextView
+        android:id="@+id/tvBegin"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:padding="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="开始漫步"
+        android:background="@drawable/frame_gray"/>
+
+
+    <ImageView
+        android:id="@+id/peoplecation"
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:src="@drawable/action"/>
+
+    <ImageView
+        android:id="@+id/ivRemind"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/redremind"
+        android:visibility="invisible"/>
+    
+    <ImageView
+        android:id="@+id/ivPicture"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerVertical="true"
+        android:background="#48ba"
+        android:src="@drawable/action"
+        android:visibility="invisible"/>
 </RelativeLayout>

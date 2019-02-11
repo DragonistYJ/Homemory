@@ -23,6 +23,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,19 +34,24 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.dragonist.homemory.Activity.ArchieDetailShow;
 import com.example.dragonist.homemory.Activity.Videoview;
+import com.example.dragonist.homemory.Activity.musicactivity;
 import com.example.dragonist.homemory.Adapter.MemoryAdapter;
 import com.example.dragonist.homemory.Adapter.MonthAdapter;
 import com.example.dragonist.homemory.Adapter.YearAdapter;
 import com.example.dragonist.homemory.Bean.MemoryBean;
 import com.example.dragonist.homemory.BitmapAndType;
 import com.example.dragonist.homemory.R;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,7 +62,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -103,21 +108,6 @@ public class Time_Machine extends Fragment {
 
     private int year;
     private List<MemoryBean> memories = new ArrayList<MemoryBean>();
-    /* private Handler handler=new Handler(){
-         @Override
-         public void handleMessage(Message msg) {
-             switch (msg.what){
-                 case 1:
-                     ArrayList<Bitmap> bitmapArrayList=(ArrayList<Bitmap>)msg.obj;
-                     for(Bitmap tempBitmap:bitmapArrayList){
-                         memories.add(new MemoryBean(tempBitmap,"爸爸",20,tempBitmap));
-                     }
-                     memoryAdapter = new MemoryAdapter(getContext(),memories);
-                     lv_memory.setAdapter(memoryAdapter);
-                     memoryAdapter.notifyDataSetChanged();
-             }
-         }
-     };*/
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -210,6 +200,7 @@ public class Time_Machine extends Fragment {
         memoryAdapter = new MemoryAdapter(getContext(), memories);
         lv_memory.setAdapter(memoryAdapter);
         memoryAdapter.notifyDataSetChanged();
+        //重要监听器
         lv_memory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -217,11 +208,20 @@ public class Time_Machine extends Fragment {
                 Log.e("当前是第：", i + "个Item");
                 switch (memoryBean.getType()) {
                     case "Image":
+                        Log.e("详细信息:",memoryBean.getDescription()+" "+memoryBean.getKeyword()+""+memoryBean.getClassification()+memoryBean.getBase64Image());
+                        Intent intentImage=new Intent(getContext(), ArchieDetailShow.class);
+                        MemoryBean memoryBeantemp=new MemoryBean(memoryBean);
+                        memoryBeantemp.setPortrait(null);
+                        memoryBeantemp.setIcon(null);
+                        memoryBeantemp.setThumbnail(null);
+                        intentImage.putExtra("information",memoryBeantemp);
+                        startActivity(intentImage);
                         break;
                     case "Music":
-                        Intent intentMusic = new Intent();
-                        intentMusic.setAction(Intent.ACTION_VIEW);
-                        intentMusic.setDataAndType(Uri.parse(memoryBean.getPath()), "audio/*");
+                        String musicpath=memoryBean.getPath();
+                        Intent intentMusic = new Intent(getContext(),musicactivity.class);
+                        intentMusic.putExtra("path",musicpath);
+                        startActivity(intentMusic);
                         break;
                     case "Document":
                         File file = new File(memoryBean.getPath());
@@ -276,9 +276,9 @@ public class Time_Machine extends Fragment {
     }
 
     private ArrayList<BitmapAndType> getServerPath() throws InterruptedException, ExecutionException {
-        ArrayList<BitmapAndType> serverInformationList = new ArrayList<>(0);
+        ArrayList<BitmapAndType> serverInformationList = new ArrayList<>();
         ExecutorService executorService = Executors.newFixedThreadPool(1);
-        firstRequest firstrequest = new firstRequest(serverInformationList, this.getActivity().getSharedPreferences("HOMEMORY", Context.MODE_PRIVATE).getString("account", account));
+        firstRequest firstrequest = new firstRequest(serverInformationList, this.getActivity().getSharedPreferences("HOMEMORY", Context.MODE_PRIVATE).getString("account",account));
         Future<ArrayList<BitmapAndType>> future = executorService.submit(firstrequest);
         ArrayList<BitmapAndType> test = new ArrayList<>();
         test = future.get();
@@ -305,14 +305,40 @@ public class Time_Machine extends Fragment {
                             Log.e("error：", e.toString());
                         }
 
+                        @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
                             Log.e("转码之后:", URLDecoder.decode(bitmapAndType.getType(), "UTF-8"));
                             switch (bitmapAndType.getType()) {
                                 case "Image":
-                                    Bitmap bitmap = BitmapFactory.decodeStream(response.body().byteStream());
-                                    MemoryBean memoryBean = new MemoryBean(bitmap, "爸爸", 20, bitmap);
+                                    InputStream inputStreamImage=response.body().byteStream();
+                                    String path=bitmapAndType.getFilename();
+                                    File ImageFile=new File("/storage/emulated/0/DCIM/Camera/"+path);
+                                    if(!ImageFile.exists()){
+                                        FileOutputStream fileOutputStream=new FileOutputStream(ImageFile);
+                                        byte[]bytesimage=new byte[1024];
+                                        int len1=0;
+                                        while((len1=inputStreamImage.read(bytesimage))!=-1){
+                                            fileOutputStream.write(bytesimage,0,len1);
+                                        }
+                                        fileOutputStream.flush();
+                                        fileOutputStream.close();
+                                        inputStreamImage.close();
+                                    }
+                                    Bitmap bitmap = BitmapFactory.decodeStream(inputStreamImage);
+                                    byte[] byteImage=new byte[inputStreamImage.available()];
+                                    ByteArrayOutputStream ImagetoBytes=new ByteArrayOutputStream();
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,ImagetoBytes);
+                                    String base64Image= android.util.Base64.encodeToString(ImagetoBytes.toByteArray(), android.util.Base64.DEFAULT);
+                                    // Log.e("base64:","*********"+base64Image);
+                                    MemoryBean memoryBean = new MemoryBean(bitmapAndType.getIcon(), bitmapAndType.getNickName(), bitmapAndType.getUploadTime(), bitmap);
+                                    memoryBean.setClassification(bitmapAndType.getClassification());
+                                    memoryBean.setKeyword(bitmapAndType.getKeyword());
+                                    memoryBean.setLocation(bitmapAndType.getLocation());
+                                    memoryBean.setRelationship(bitmapAndType.getRelationship());
+                                    memoryBean.setDescription(bitmapAndType.getDescription());
                                     memoryBean.setType("Image");
+                                    memoryBean.setPath(ImageFile.getPath());
                                     if (!memoryBeans.contains(memoryBean)) {
                                         memoryBeans.add(memoryBean);
                                         Message message = new Message();
@@ -322,18 +348,18 @@ public class Time_Machine extends Fragment {
                                     }
                                     break;
                                 case "Music":
-                                    SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyyMMddHHmmss");
-                                    Date date1 = new Date();
-                                    String datestr1 = simpleDateFormat1.format(date1);
+
+                                    String datestr1 = URLEncoder.encode(bitmapAndType.getFilename(),"UTF-8");
                                     Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.music);
-                                    MemoryBean memoryBeanMusic = new MemoryBean(bitmap1, "爸爸", 20, bitmap1);
+                                    MemoryBean memoryBeanMusic = new MemoryBean(bitmap1, bitmapAndType.getNickName(), bitmapAndType.getUploadTime(), bitmap1);
                                     memoryBeanMusic.setType("Music");
-                                    File fileMusic = new File("/storage/emulated/0/DCIM/Camera/" + datestr1 + ".mp3");//getURL其实是getFilename
+                                    Log.e("音乐",datestr1);
+                                    File fileMusic = new File("/storage/emulated/0/DCIM/Camera/" + datestr1);//getURL其实是getFilename
                                     BufferedOutputStream bufferedOutputStreamMusic = new BufferedOutputStream(new FileOutputStream(fileMusic));
                                     byte[] bytesMusic = new byte[1024];
                                     InputStream inputStreamMusic = response.body().byteStream();
                                     while (inputStreamMusic.read(bytesMusic) != -1) {
-                                        bufferedOutputStreamMusic.write(bytesMusic);
+                                        bufferedOutputStreamMusic.write(bytesMusic,0,bytesMusic.length);
                                     }
                                     bufferedOutputStreamMusic.flush();
                                     bufferedOutputStreamMusic.close();
@@ -350,7 +376,12 @@ public class Time_Machine extends Fragment {
 //                                    Date date = new Date();
                                     String datestr = UUID.randomUUID().toString().replaceAll("-", "");
                                     Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.video);
-                                    MemoryBean memoryBean1 = new MemoryBean(bitmap2, "爸爸", 20, bitmap2);
+                                    MemoryBean memoryBean1 = new MemoryBean(bitmap2, bitmapAndType.getNickName(), bitmapAndType.getUploadTime(), bitmap2);
+                                    memoryBean1.setClassification(bitmapAndType.getClassification());
+                                    memoryBean1.setKeyword(bitmapAndType.getKeyword());
+                                    memoryBean1.setLocation(bitmapAndType.getLocation());
+                                    memoryBean1.setRelationship(bitmapAndType.getRelationship());
+                                    memoryBean1.setDescription(bitmapAndType.getDescription());
                                     memoryBean1.setType("Video");
                                     File file = new File("/storage/emulated/0/DCIM/Camera/" + datestr + ".mp4");
                                     OutputStream bufferedOutputStream = new FileOutputStream(file);
@@ -371,6 +402,32 @@ public class Time_Machine extends Fragment {
                                     handler.sendMessage(message2);
                                     break;
                                 case "Document":
+                                    Bitmap bitmapdocument=BitmapFactory.decodeResource(getResources(),R.drawable.a);
+                                    String filename=bitmapAndType.getFilename();
+                                    MemoryBean memoryBeandocument=new MemoryBean(bitmapdocument,bitmapAndType.getNickName(),bitmapAndType.getUploadTime(),bitmapdocument);
+                                    memoryBeandocument.setClassification(bitmapAndType.getClassification());
+                                    memoryBeandocument.setKeyword(bitmapAndType.getKeyword());
+                                    memoryBeandocument.setLocation(bitmapAndType.getLocation());
+                                    memoryBeandocument.setRelationship(bitmapAndType.getRelationship());
+                                    memoryBeandocument.setDescription(bitmapAndType.getDescription());
+                                    memoryBeandocument.setType("Document");
+                                    File document=new File("/storage/emulated/0/DCIM/Camera/"+filename);
+                                    OutputStream documentoutputstream=new FileOutputStream(document);
+                                    byte[]documentbyte=new byte[1024];
+                                    int documentlength=0;
+                                    InputStream documentinputstream=response.body().byteStream();
+                                    while((len=documentinputstream.read(documentbyte))!=-1){
+                                        documentoutputstream.write(documentbyte,0,len);
+                                    }
+                                    documentoutputstream.flush();
+                                    documentoutputstream.close();
+                                    documentinputstream.close();
+                                    memoryBeandocument.setPath(document.getPath());
+                                    memoryBeans.add(memoryBeandocument);
+                                    Message messagedocument = new Message();
+                                    messagedocument.what = 1;
+                                    messagedocument.obj = memoryBeans;
+                                    handler.sendMessage(messagedocument);
                                     break;
                                 default:
                                     break;
@@ -432,12 +489,19 @@ class firstRequest implements Callable<ArrayList<BitmapAndType>> {
                 try {
                     Log.e("文件信息", serverFilePath.toString());
                     JSONObject jsonObject = new JSONObject(serverFilePath.toString());
+                    JsonObject object = (JsonObject) new JsonParser().parse(serverFilePath.toString());
                     int amount = Integer.parseInt(jsonObject.getString("amount"));
                     //获取所有的服务端路径，用于等下的请求
                     for (int i = 1; i <= amount; i++) {
                         JSONObject jsonObjectSon = new JSONObject(jsonObject.getString(String.valueOf(i)));
                         Log.e("json", jsonObjectSon.toString());
-                        serverInformationList.add(new BitmapAndType(jsonObjectSon.getString("fileName"), jsonObjectSon.getString("fileType"), jsonObjectSon.getString("id")));
+                        BitmapAndType bitmapAndType = new BitmapAndType(jsonObjectSon.getString("fileName"), jsonObjectSon.getString("fileType"), jsonObjectSon.getString("id"),"",URLDecoder.decode(jsonObjectSon.getString("location"),"UTF-8"),URLDecoder.decode(jsonObjectSon.getString("keyWord"),"UTF-8"),URLDecoder.decode(jsonObjectSon.getString("description"),"UTF-8"),URLDecoder.decode(jsonObjectSon.getString("label"),"UTF-8"),URLDecoder.decode(jsonObjectSon.getString("classification"),"UTF-8"),URLDecoder.decode(jsonObjectSon.getString("nickName"),"UTF-8"),URLDecoder.decode(jsonObjectSon.getString("uploadDate"),"UTF-8"));
+                        JsonObject tmp = object.get(i+"").getAsJsonObject();
+                        String portraitS = tmp.get("portrait").getAsString();
+                        byte[] bytes = Base64.decode(portraitS,android.util.Base64.DEFAULT);
+                        Bitmap portrait = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                        bitmapAndType.setIcon(portrait);
+                        serverInformationList.add(bitmapAndType);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -453,4 +517,3 @@ class firstRequest implements Callable<ArrayList<BitmapAndType>> {
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 }
-

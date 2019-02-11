@@ -2,6 +2,7 @@ package com.example.dragonist.homemory.View;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -11,6 +12,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+
+import com.example.dragonist.homemory.R;
+
+import static com.example.dragonist.homemory.R.drawable.action;
 
 public class CircleView extends AppCompatImageView {
     private float width;
@@ -50,6 +55,7 @@ public class CircleView extends AppCompatImageView {
 
     private BitmapShader initBitmapShader() {
         Bitmap bitmap = ((BitmapDrawable) getDrawable()).getBitmap();
+        if (bitmap==null) bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.a);
         BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         float scale = Math.max(width / bitmap.getWidth(), height / bitmap.getHeight());
         matrix.setScale(scale, scale);//将图片宽高等比例缩放，避免拉伸

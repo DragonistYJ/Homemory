@@ -62,13 +62,6 @@
         android:background="#000000">
     </View>
 
-    <FrameLayout
-        android:id="@+id/frag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/line">
-    </FrameLayout>
-
     <ImageView
         android:id="@+id/upload"
         android:layout_width="50dp"
@@ -78,5 +71,12 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/upload"/>
+
+    <FrameLayout
+        android:layout_below="@+id/line"
+        android:id="@+id/frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </RelativeLayout>

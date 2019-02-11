@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Family.FamilyGroup">
+
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="0dp"
+        android:text="返回"
+        android:background="@drawable/frame_blue"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="创建家庭"
+        android:textSize="60sp"
+        android:textColor="#48baee"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/etFamilyName"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20sp"
+        android:padding="0dp"
+        android:gravity="center"
+        android:hint="请输入您所创建的家庭名称"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title"
+        android:background="@drawable/frame_blue"/>
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/etFamilyName"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="#48baee"
+        android:text="家庭编号"/>
+
+    <TextView
+        android:id="@+id/tvFamilyNumber"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:padding="0dp"
+        android:layout_below="@+id/number"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="#48baee"
+        android:background="@drawable/frame_blue"/>
+
+    <TextView
+        android:id="@+id/remind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvFamilyNumber"
+        android:text="！请妥善保存家庭编号"/>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:padding="0dp"
+        android:layout_below="@+id/remind"
+        android:text="确认创建"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_rectangle"/>
+</RelativeLayout>

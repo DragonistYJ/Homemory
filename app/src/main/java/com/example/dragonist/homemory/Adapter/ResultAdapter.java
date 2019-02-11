@@ -59,6 +59,7 @@ public class ResultAdapter extends BaseAdapter {
             viewHolder.tvLocation = convertView.findViewById(R.id.tvLocation);
             viewHolder.tvUploadTime = convertView.findViewById(R.id.tvUploadTime);
             viewHolder.ivIcon = convertView.findViewById(R.id.ivIcon);
+            viewHolder.ivPortrait = convertView.findViewById(R.id.portrait);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -70,6 +71,8 @@ public class ResultAdapter extends BaseAdapter {
         viewHolder.tvDescription.setText(archives.get(position).getDescription());
         viewHolder.tvLocation.setText(archives.get(position).getLocation());
         viewHolder.tvUploadTime.setText(archives.get(position).getUploadDate().toString());
+        viewHolder.ivIcon.setImageBitmap(archives.get(position).getIcon());
+        viewHolder.ivPortrait.setImageBitmap(archives.get(position).getPortrait());
 
         return convertView;
     }
@@ -82,5 +85,6 @@ public class ResultAdapter extends BaseAdapter {
         public TextView tvLocation;
         public TextView tvAuthority;
         public ImageView ivIcon;
+        public ImageView ivPortrait;
     }
 }

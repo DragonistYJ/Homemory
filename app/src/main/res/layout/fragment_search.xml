@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_below="@+id/first_row"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -84,34 +84,11 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:src="@drawable/search_keyword"/>
-        <ImageView
-            android:id="@+id/face"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/search_face"/>
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/third_row"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_below="@+id/second_row"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
-
-        <ImageView
-            android:id="@+id/nlp"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:src="@drawable/search_nlp" />
         <ImageView
             android:id="@+id/authority"
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="60dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/search_authority"/>
     </RelativeLayout>

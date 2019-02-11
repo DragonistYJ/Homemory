@@ -96,12 +96,12 @@ public class Login extends AppCompatActivity {
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*account = et_accout.getText().toString();
+                account = et_accout.getText().toString();
                 password = et_password.getText().toString();
                 if (!account.isEmpty() && !password.isEmpty()) login();
-                else Toast.makeText(Login.this, "请输入正确的账号和密码", Toast.LENGTH_SHORT).show();*/
-                Intent intent = new Intent(Login.this, Main.class);
-                startActivity(intent);
+                else Toast.makeText(Login.this, "请输入正确的账号和密码", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(Login.this, Main.class);
+                startActivity(intent);*/
             }
         });
 

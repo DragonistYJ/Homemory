@@ -8,21 +8,17 @@ public class FamilyMember {
     private Bitmap portrait;
     private String appellation;
     private int intimacy;
-    private boolean expend;
+    private boolean isExpend;
     private String nickName;
     private String birthday;
+    private boolean isAdministrator;
 
-    public FamilyMember(Bitmap portrait, String appellation, int intimacy, String nickName, String birthday) {
-        this(portrait,appellation,intimacy,false,nickName,birthday);
+    public Bitmap getPortrait() {
+        return portrait;
     }
 
-    public FamilyMember(Bitmap portrait, String appellation, int intimacy, boolean expend, String nickName, String birthday) {
+    public void setPortrait(Bitmap portrait) {
         this.portrait = portrait;
-        this.appellation = appellation;
-        this.intimacy = intimacy;
-        this.expend = expend;
-        this.nickName = nickName;
-        this.birthday = birthday;
     }
 
     public String getAppellation() {
@@ -42,11 +38,11 @@ public class FamilyMember {
     }
 
     public boolean isExpend() {
-        return expend;
+        return isExpend;
     }
 
     public void setExpend(boolean expend) {
-        this.expend = expend;
+        isExpend = expend;
     }
 
     public String getNickName() {
@@ -65,11 +61,19 @@ public class FamilyMember {
         this.birthday = birthday;
     }
 
-    public Bitmap getPortrait() {
-        return portrait;
+    public boolean isAdministrator() {
+        return isAdministrator;
     }
 
-    public void setPortrait(Bitmap portrait) {
+    public void setAdministrator(boolean administrator) {
+        isAdministrator = administrator;
+    }
+
+    public FamilyMember(Bitmap portrait, boolean isExpend, String nickName, String birthday, boolean isAdministrator) {
         this.portrait = portrait;
+        this.isExpend = isExpend;
+        this.nickName = nickName;
+        this.birthday = birthday;
+        this.isAdministrator = isAdministrator;
     }
 }

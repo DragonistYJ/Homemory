@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/first_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#cfcfcf"
+        />
+
+    <TextView
+        android:layout_below="@+id/first_line"
+        android:layout_marginTop="5dp"
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="2018年3月28日 18:12:00"/>
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_below="@id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="xxx邀请您加入xxx"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/agree"
+        android:layout_toLeftOf="@+id/ignore"
+        android:layout_marginRight="10dp"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:padding="0dp"
+        android:gravity="center"
+        android:text="同意"
+        android:layout_alignBottom="@id/value"
+        android:background="@drawable/frame_blue"/>
+
+    <TextView
+        android:id="@+id/ignore"
+        android:layout_alignParentRight="true"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:text="忽略"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:padding="0dp"
+        android:background="@drawable/frame_blue"
+        android:layout_alignBottom="@+id/value"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#cfcfcf"
+        android:layout_below="@+id/ignore"
+        android:layout_marginTop="5dp"/>
+</RelativeLayout>

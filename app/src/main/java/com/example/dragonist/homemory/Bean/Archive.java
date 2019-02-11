@@ -11,15 +11,27 @@ public class Archive {
 	private String description;
 	private String label;
 	private String classification;
+	private String savePath;
 	private String visibleRange;
 	private String fileName;
 	private String fileType;
 	private String user;
-	private Timestamp uploadDate;
+	private String uploadDate;
 	private Boolean bigEvent;
-	private Integer id;
+	private String id;
 	private String nickName;
 	private Bitmap icon;
+	private String Path;//如果是音乐，视频，文件等档案，需要将他写进本地。
+	private Bitmap portrait;
+
+	public Bitmap getIcon() {
+		return icon;
+	}
+
+	public void setIcon(Bitmap icon) {
+		this.icon = icon;
+	}
+
 	public String getRelationship() {
 		return relationship;
 	}
@@ -56,6 +68,12 @@ public class Archive {
 	public void setClassification(String classification) {
 		this.classification = classification;
 	}
+	public String getSavePath() {
+		return savePath;
+	}
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
+	}
 	public String getVisibleRange() {
 		return visibleRange;
 	}
@@ -80,10 +98,10 @@ public class Archive {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	public Timestamp getUploadDate() {
+	public String getUploadDate() {
 		return uploadDate;
 	}
-	public void setUploadDate(Timestamp uploadDate) {
+	public void setUploadDate(String uploadDate) {
 		this.uploadDate = uploadDate;
 	}
 	public Boolean getBigEvent() {
@@ -92,37 +110,89 @@ public class Archive {
 	public void setBigEvent(Boolean bigEvent) {
 		this.bigEvent = bigEvent;
 	}
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getNickName() {
 		return nickName;
 	}
-
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-
-	public Bitmap getIcon() {
-		return icon;
+	public Bitmap getPortrait() {
+		return portrait;
+	}
+	public void setPortrait(Bitmap portrait) {
+		this.portrait = portrait;
 	}
 
-	public void setIcon(Bitmap icon) {
-		this.icon = icon;
+	public Archive(String relationship, String location, String keyword, String description, String label,
+				   String classification, String savePath, String visibleRange, String fileName, String fileType, String user,
+				   Boolean bigEvent, String nickName) {
+		super();
+		this.relationship = relationship;
+		this.location = location;
+		this.keyword = keyword;
+		this.description = description;
+		this.label = label;
+		this.classification = classification;
+		this.savePath = savePath;
+		this.visibleRange = visibleRange;
+		this.fileName = fileName;
+		this.fileType = fileType;
+		this.user = user;
+		this.bigEvent = bigEvent;
+		this.Path=null;
+		this.nickName=nickName;
 	}
 
-	public Archive(String location, String description, String classification, String visibleRange, Timestamp uploadDate, Integer id, String nickName, Bitmap icon) {
+	public Archive(String location, String description, String classification, String visibleRange, String uploadDate, String nickName,String id) {
 		this.location = location;
 		this.description = description;
 		this.classification = classification;
 		this.visibleRange = visibleRange;
 		this.uploadDate = uploadDate;
-		this.id = id;
 		this.nickName = nickName;
-		this.icon = icon;
+		this.id=id;
+	}
+
+	public Archive(String relationship, String location, String keyword, String description, String label,
+				   String classification, String savePath, String visibleRange, String fileName, String fileType, String user,
+				   Timestamp uploadDate, Boolean bigEvent, Integer id, String nickName) {
+		super();
+		this.relationship = relationship;
+		this.location = location;
+		this.keyword = keyword;
+		this.description = description;
+		this.label = label;
+		this.classification = classification;
+		this.savePath = savePath;
+		this.visibleRange = visibleRange;
+		this.fileName = fileName;
+		this.fileType = fileType;
+		this.user = user;
+		this.bigEvent = bigEvent;
+		this.Path=null;
+		this.nickName=nickName;
+	}
+
+	public String getPath() {
+		return Path;
+	}
+
+	public void setPath(String path) {
+		Path = path;
+	}
+
+	@Override
+	public String toString() {
+		return "Archive [relationship=" + relationship + ", location=" + location + ", keyword=" + keyword
+				+ ", description=" + description + ", label=" + label + ", classification=" + classification
+				+ ", savePath=" + savePath + ", visibleRange=" + visibleRange + ", fileName=" + fileName + ", fileType="
+				+ fileType + ", user=" + user + ", uploadDate=" + uploadDate + ", bigEvent=" + bigEvent + ", id=" + id
+				+ "]";
 	}
 }

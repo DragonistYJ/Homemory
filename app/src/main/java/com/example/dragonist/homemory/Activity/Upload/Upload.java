@@ -3,6 +3,7 @@ import com.example.dragonist.*;
 
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -474,6 +475,11 @@ public class Upload extends AppCompatActivity {
             bufferedOutputStream.flush();
             bufferedOutputStream.close();
             uploadFile.setFile(file);
+            uploadFile.setFileName(datestr+".jpg");
+            uploadFile.setFileType("Image");
+            SharedPreferences sharedPreferences=getSharedPreferences("HOMEMORY",MODE_PRIVATE);
+            uploadFile.setAccount(sharedPreferences.getString("account","13032856371"));
+            // uploadFile.setAccount();
         }catch (Exception e){
             e.printStackTrace();
         }

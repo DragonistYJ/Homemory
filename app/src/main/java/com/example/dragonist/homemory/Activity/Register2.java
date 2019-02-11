@@ -47,7 +47,6 @@ public class Register2 extends AppCompatActivity {
     private EditText etAge;
     private EditText etHomeTown;
     private EditText etLocation;
-    private EditText etFamily;
     private EditText etPassword;
     private Button btnComplete;
 
@@ -59,7 +58,6 @@ public class Register2 extends AppCompatActivity {
     private String age;
     private String homeTown;
     private String location;
-    private String family;
     private String account;
     private String password;
     private File file = null;
@@ -100,7 +98,7 @@ public class Register2 extends AppCompatActivity {
         tvPortrait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent("android.intent.action.GET_CONTENT");
+                Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
                 startActivityForResult(intent,0x404);
             }
@@ -114,7 +112,6 @@ public class Register2 extends AppCompatActivity {
         etAge = findViewById(R.id.etAge);
         etHomeTown = findViewById(R.id.etHomeTown);
         etLocation = findViewById(R.id.etLocation);
-        etFamily = findViewById(R.id.etFamily);
         etPassword = findViewById(R.id.etPassword);
 
         btnComplete = findViewById(R.id.btnComplete);
@@ -131,15 +128,14 @@ public class Register2 extends AppCompatActivity {
                 age = etAge.getText().toString();
                 homeTown = etHomeTown.getText().toString();
                 location = etLocation.getText().toString();
-                family = etFamily.getText().toString();
                 if (password.isEmpty() || nickName.isEmpty() || sex.isEmpty() || year.isEmpty() || month.isEmpty() || day.isEmpty()
                         || age.isEmpty() || homeTown.isEmpty() || location.isEmpty()) {
                     Toast.makeText(Register2.this, "请输入完整的账户信息", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (file==null) {
-                    Toast.makeText(Register2.this, "头像不可为空", Toast.LENGTH_SHORT).show();
-                    return;
+                    /*Toast.makeText(Register2.this, "头像不可为空", Toast.LENGTH_SHORT).show();
+                    return;*/
                 }
 
                 MultipartBody.Builder builder=new MultipartBody.Builder();
@@ -156,7 +152,6 @@ public class Register2 extends AppCompatActivity {
                             .addFormDataPart("age", URLEncoder.encode(age, "UTF-8"))
                             .addFormDataPart("homeTown", URLEncoder.encode(homeTown, "UTF-8"))
                             .addFormDataPart("location", URLEncoder.encode(location, "UTF-8"))
-                            .addFormDataPart("family", URLEncoder.encode(family, "UTF-8"))
                             .addFormDataPart("portrait", URLEncoder.encode("icon", "UTF-8"), requestFile)
                             .setType(MultipartBody.FORM).build();
                 } catch (UnsupportedEncodingException e) {
